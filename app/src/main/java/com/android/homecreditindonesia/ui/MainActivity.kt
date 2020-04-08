@@ -1,13 +1,30 @@
 package com.android.homecreditindonesia.ui
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.android.homecreditindonesia.R
+import com.android.homecreditindonesia.base.BaseActivity
+import org.jetbrains.anko.toast
+import org.koin.android.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    private val viewModel by viewModel<MainViewModel>()
+
+    override fun getLayoutResId(): Int = R.layout.activity_main
+
+    override fun loadingData(isFromSwipe: Boolean) {
+        super.loadingData(isFromSwipe)
+        viewModel.getContent()
     }
+
+    override fun observeData() {
+        super.observeData()
+        viewModel.contentData.observe(this, Observer {
+            parseObserveData(it, resultLoading = {},
+                resultSuccess = { result, _ ->
+                    toast("Success")
+                })
+        })
+    }
+
 }
