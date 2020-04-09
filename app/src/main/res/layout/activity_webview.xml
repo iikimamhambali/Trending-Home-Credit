@@ -17,9 +17,16 @@
         android:id="@+id/webViewProduct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="@+id/toolbarProduct"
         app:layout_constraintStart_toStartOf="@+id/toolbarProduct"
         app:layout_constraintTop_toBottomOf="@+id/toolbarProduct" />
+
+    <include
+        android:id="@+id/progressView"
+        layout="@layout/layout_progress_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

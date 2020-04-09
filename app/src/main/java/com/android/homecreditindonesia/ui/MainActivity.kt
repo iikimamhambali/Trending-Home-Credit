@@ -2,6 +2,7 @@ package com.android.homecreditindonesia.ui
 
 import android.os.Bundle
 import android.util.Log.d
+import android.view.View
 import androidx.lifecycle.Observer
 import com.android.homecreditindonesia.R
 import com.android.homecreditindonesia.base.BaseActivity
@@ -14,6 +15,7 @@ import com.android.homecreditindonesia.ui.web.WebViewActivity
 import com.android.homecreditindonesia.ui.web.WebViewActivity.Companion.PRODUCT_TITLE
 import com.android.homecreditindonesia.ui.web.WebViewActivity.Companion.URL_ADDRESS
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.layout_item_main.*
 import org.jetbrains.anko.startActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -37,6 +39,19 @@ class MainActivity : BaseActivity(), ProductViewHolder.SetOnClickProduct,
 
     private fun setupLogo() {
         ivLogo.bringToFront()
+    }
+
+    private fun setupProgressView(visible: Boolean) {
+        when (visible) {
+            true -> {
+                progressView.visibility = View.GONE
+                rvContent.visibility = View.VISIBLE
+            }
+            else -> {
+                rvContent.visibility = View.GONE
+                progressView.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun setupRecyclerView() {
@@ -77,7 +92,7 @@ class MainActivity : BaseActivity(), ProductViewHolder.SetOnClickProduct,
     override fun observeData() {
         super.observeData()
         viewModel.contentData.observe(this, Observer {
-            parseObserveData(it, resultLoading = {},
+            parseObserveData(it,
                 resultSuccess = { result, _ ->
                     addData(result.data)
                 },
@@ -85,5 +100,13 @@ class MainActivity : BaseActivity(), ProductViewHolder.SetOnClickProduct,
                     d("LOG", "Error =" + it.toString())
                 })
         })
+    }
+
+    override fun startLoading() {
+        setupProgressView(false)
+    }
+
+    override fun stopLoading() {
+        setupProgressView(true)
     }
 }

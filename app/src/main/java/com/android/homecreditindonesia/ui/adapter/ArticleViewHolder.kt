@@ -16,8 +16,8 @@ class ArticleViewHolder(
         with(itemView) {
             ivArticle.loadFromUrlWithPlaceholder(
                 items.articleImage,
-                R.drawable.ic_launcher_background,
-                R.drawable.ic_launcher_background
+                R.drawable.ic_placeholder_article,
+                R.drawable.ic_placeholder_article
             )
             tvTitleArticle.text = items.articleTitle
 

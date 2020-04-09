@@ -20,12 +20,12 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivArticle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_launcher_foreground" />
+            tools:srcCompat="@drawable/ic_placeholder_article" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTitleArticle"

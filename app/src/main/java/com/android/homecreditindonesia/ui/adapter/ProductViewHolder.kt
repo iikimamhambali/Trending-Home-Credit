@@ -16,9 +16,10 @@ class ProductViewHolder(
         with(itemView) {
             ivProduct.loadFromUrlWithPlaceholder(
                 items.productImage,
-                R.drawable.ic_launcher_background,
-                R.drawable.ic_launcher_background
+                R.drawable.ic_placeholder_product,
+                R.drawable.ic_placeholder_product
             )
+
             val title = items.productName
             val resultProduct = title.substringAfter(delimiter = " ")
             val resultPayment = title.substringBefore(delimiter = " ")

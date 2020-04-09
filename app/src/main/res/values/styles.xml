@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="AppTheme.NoActionBar">
@@ -23,6 +23,12 @@
 
     <style name="splashTheme" parent="AppTheme.NoActionBar.Full">
         <item name="android:windowBackground">@drawable/ic_header</item>
+        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>
+        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
+    </style>
+
+    <style name="CircularProgress" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
 </resources>

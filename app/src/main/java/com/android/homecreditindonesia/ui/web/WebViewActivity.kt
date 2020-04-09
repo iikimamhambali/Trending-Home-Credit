@@ -48,12 +48,31 @@ class WebViewActivity : BaseActivity() {
         ivToolbarBack.visibility = View.VISIBLE
     }
 
+    private fun setupProgressView(visible: Boolean) {
+        when (visible) {
+            true -> {
+                webViewProduct.visibility = View.GONE
+                progressView.visibility = View.VISIBLE
+            }
+            else -> {
+                progressView.visibility = View.GONE
+                webViewProduct.visibility = View.VISIBLE
+            }
+        }
+    }
+
     private fun setOnClickToolbar() {
         ivToolbarBack.setOnClickListener { finish() }
     }
 
+    private fun setupWebView() {
+        webViewProduct.isScrollbarFadingEnabled = true
+        webViewProduct.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+    }
+
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebViewSetting() {
+        setupWebView()
         webViewProduct.settings.apply {
             javaScriptEnabled = true
             setSupportZoom(true)
@@ -70,18 +89,11 @@ class WebViewActivity : BaseActivity() {
 
     private fun openUrl(url: String) {
         webViewProduct.webViewClient = ProductWebViewClient { code, desc ->
-            //            eventBus.post(ErrorEvent(clazz<ProductActivity>().simpleName,
-//                desc, code))
-//            setProgressVisibility(false)
+            setupProgressView(false)
         }
         webViewProduct.webChromeClient = ProductChromeClient(
-            {
-                //                setProgressVisibility(true)
-//                pbTnCHorizontal.progress = it
-            },
-            {
-                //                setProgressVisibility(false)
-            }
+            { setupProgressView(true) },
+            { setupProgressView(false) }
         )
         webViewProduct.loadUrl(url)
     }
