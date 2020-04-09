@@ -28,7 +28,9 @@
             android:id="@+id/tvTitleArticle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
             android:padding="8dp"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/ivArticle"
             app:layout_constraintTop_toBottomOf="@+id/ivArticle"
             tools:text="Title Article" />

@@ -35,6 +35,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:ellipsize="end"
+            android:fontFamily="@font/poppins_regular"
             android:maxLines="1"
             android:textColor="@android:color/white"
             android:textSize="20sp"
