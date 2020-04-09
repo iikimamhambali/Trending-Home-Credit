@@ -1,7 +1,6 @@
 package com.android.homecreditindonesia.ui
 
 import android.os.Bundle
-import android.util.Log.d
 import android.view.View
 import androidx.lifecycle.Observer
 import com.android.homecreditindonesia.R
@@ -14,8 +13,10 @@ import com.android.homecreditindonesia.ui.adapter.ProductViewHolder
 import com.android.homecreditindonesia.ui.web.WebViewActivity
 import com.android.homecreditindonesia.ui.web.WebViewActivity.Companion.PRODUCT_TITLE
 import com.android.homecreditindonesia.ui.web.WebViewActivity.Companion.URL_ADDRESS
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.layout_item_main.*
+import kotlinx.android.synthetic.main.activity_main.sectionEmptyState
+import kotlinx.android.synthetic.main.layout_connection_lost.*
 import org.jetbrains.anko.startActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -35,6 +36,11 @@ class MainActivity : BaseActivity(), ProductViewHolder.SetOnClickProduct,
         super.initView(savedInstanceState)
         setupLogo()
         setupRecyclerView()
+    }
+
+    override fun initEvent() {
+        super.initEvent()
+        onClickEmptyState()
     }
 
     private fun setupLogo() {
@@ -84,6 +90,13 @@ class MainActivity : BaseActivity(), ProductViewHolder.SetOnClickProduct,
         )
     }
 
+    private fun onClickEmptyState() {
+        btnReload.setOnClickListener {
+            sectionEmptyState.visibility = View.GONE
+            loadingData()
+        }
+    }
+
     override fun loadingData(isFromSwipe: Boolean) {
         super.loadingData(isFromSwipe)
         viewModel.getContent()
@@ -95,9 +108,6 @@ class MainActivity : BaseActivity(), ProductViewHolder.SetOnClickProduct,
             parseObserveData(it,
                 resultSuccess = { result, _ ->
                     addData(result.data)
-                },
-                resultError = {
-                    d("LOG", "Error =" + it.toString())
                 })
         })
     }
@@ -108,5 +118,14 @@ class MainActivity : BaseActivity(), ProductViewHolder.SetOnClickProduct,
 
     override fun stopLoading() {
         setupProgressView(true)
+    }
+
+    override fun onInternetError() {
+        Snackbar.make(
+            sectionMain,
+            getString(R.string.label_title_error_connection),
+            Snackbar.LENGTH_SHORT
+        ).show()
+        sectionEmptyState.visibility = View.VISIBLE
     }
 }
