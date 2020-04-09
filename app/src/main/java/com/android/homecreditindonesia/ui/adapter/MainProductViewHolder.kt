@@ -1,7 +1,5 @@
 package com.android.homecreditindonesia.ui.adapter
 
-import android.annotation.SuppressLint
-import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.android.homecreditindonesia.R
@@ -25,21 +23,8 @@ class MainProductViewHolder(view: View, private val listener: ProductViewHolder.
                 ProductAdapter(items.items, listener),
                 BaseRecyclerView.LayoutManager.GRID, SPAN
             )
-
-//            setBackground()
             sectionContent.backgroundDrawable =
                 context.getDrawableCompat(R.drawable.bg_container_round)
-        }
-    }
-
-    @SuppressLint("ResourceAsColor")
-    private fun setBackground() {
-        with(itemView){
-            val gradientDrawable = GradientDrawable()
-            gradientDrawable.cornerRadius = 20F
-            gradientDrawable.setColor(R.color.colorAccent)
-
-            sectionContent.background = gradientDrawable
         }
     }
 }

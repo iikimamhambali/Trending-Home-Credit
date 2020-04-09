@@ -20,7 +20,7 @@ class ProductViewHolder(
                 R.drawable.ic_launcher_background
             )
             tvTitleProduct.text = items.productName
-            cvThumbnail.setOnClickListener { listener.onClickProduct(items) }
+            sectionProduct.setOnClickListener { listener.onClickProduct(items) }
         }
     }
 
