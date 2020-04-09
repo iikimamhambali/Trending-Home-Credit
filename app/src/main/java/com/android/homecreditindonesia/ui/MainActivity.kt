@@ -10,9 +10,12 @@ import com.android.homecreditindonesia.entity.*
 import com.android.homecreditindonesia.ui.adapter.ArticleViewHolder
 import com.android.homecreditindonesia.ui.adapter.MainAdapter
 import com.android.homecreditindonesia.ui.adapter.ProductViewHolder
+import com.android.homecreditindonesia.ui.web.WebViewActivity
+import com.android.homecreditindonesia.ui.web.WebViewActivity.Companion.PRODUCT_TITLE
+import com.android.homecreditindonesia.ui.web.WebViewActivity.Companion.URL_ADDRESS
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar_default.*
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.startActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity(), ProductViewHolder.SetOnClickProduct,
@@ -54,11 +57,17 @@ class MainActivity : BaseActivity(), ProductViewHolder.SetOnClickProduct,
     }
 
     override fun onClickProduct(items: ContentItemProduct) {
-        toast("Thumbnail")
+        startActivity<WebViewActivity>(
+            URL_ADDRESS to items.link,
+            PRODUCT_TITLE to items.productName
+        )
     }
 
     override fun onClickArticle(items: ContentItemArticle) {
-        toast("Article")
+        startActivity<WebViewActivity>(
+            URL_ADDRESS to items.link,
+            PRODUCT_TITLE to items.articleTitle
+        )
     }
 
     override fun loadingData(isFromSwipe: Boolean) {
