@@ -19,7 +19,12 @@ class ProductViewHolder(
                 R.drawable.ic_launcher_background,
                 R.drawable.ic_launcher_background
             )
-            tvTitleProduct.text = items.productName
+            val title = items.productName
+            val resultProduct = title.substringAfter(delimiter = " ")
+            val resultPayment = title.substringBefore(delimiter = " ")
+            val textTitle = "$resultPayment \n $resultProduct"
+
+            tvTitleProduct.text = textTitle
             sectionProduct.setOnClickListener { listener.onClickProduct(items) }
         }
     }
