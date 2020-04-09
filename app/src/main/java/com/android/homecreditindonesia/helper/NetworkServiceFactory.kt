@@ -2,6 +2,8 @@ package com.android.homecreditindonesia.helper
 
 import android.content.Context
 import com.android.homecreditindonesia.BuildConfig
+import com.android.homecreditindonesia.entity.ContentData
+import com.android.homecreditindonesia.entity.ContentDeserializer
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.Cache
@@ -34,7 +36,7 @@ object NetworkServiceFactory {
     }
 
     fun makeGson(): Gson {
-        return GsonBuilder()
+        return GsonBuilder().registerTypeAdapter(ContentData::class.java, ContentDeserializer())
             .create()
     }
 

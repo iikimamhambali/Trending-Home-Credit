@@ -2,7 +2,7 @@ package com.android.homecreditindonesia.repository
 
 import androidx.lifecycle.LiveData
 import com.android.homecreditindonesia.base.BaseRepositoryLiveData
-import com.android.homecreditindonesia.entity.ContentData
+import com.android.homecreditindonesia.entity.Content
 import com.android.homecreditindonesia.helper.AbsentLiveData
 import com.android.homecreditindonesia.helper.ApiResponse
 import com.android.homecreditindonesia.helper.AppExecutors
@@ -14,21 +14,21 @@ class ContentRepository(
     private val service: ContentService
 ) {
 
-    fun getContent(): LiveData<SourceStatus<ContentData>> {
-        return object : BaseRepositoryLiveData<ContentData>(appExecutors) {
-            override fun saveFromNetwork(item: ContentData) {
+    fun getContent(): LiveData<SourceStatus<Content>> {
+        return object : BaseRepositoryLiveData<Content>(appExecutors) {
+            override fun saveFromNetwork(item: Content) {
 
             }
 
-            override fun shouldFetchFromNetwork(data: ContentData?): Boolean {
+            override fun shouldFetchFromNetwork(data: Content?): Boolean {
                 return true
             }
 
-            override fun loadFromLocal(): LiveData<ContentData> {
+            override fun loadFromLocal(): LiveData<Content> {
                 return AbsentLiveData.create()
             }
 
-            override fun loadFromNetwork(): LiveData<ApiResponse<ContentData>> {
+            override fun loadFromNetwork(): LiveData<ApiResponse<Content>> {
                 return service.getContentHome()
             }
 
