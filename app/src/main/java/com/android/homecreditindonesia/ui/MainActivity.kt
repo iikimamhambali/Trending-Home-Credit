@@ -14,7 +14,6 @@ import com.android.homecreditindonesia.ui.web.WebViewActivity
 import com.android.homecreditindonesia.ui.web.WebViewActivity.Companion.PRODUCT_TITLE
 import com.android.homecreditindonesia.ui.web.WebViewActivity.Companion.URL_ADDRESS
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.layout_toolbar_default.*
 import org.jetbrains.anko.startActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -32,12 +31,12 @@ class MainActivity : BaseActivity(), ProductViewHolder.SetOnClickProduct,
 
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
-        setupToolbar()
+        setupLogo()
         setupRecyclerView()
     }
 
-    private fun setupToolbar() {
-        tvToolbarInfoTitle.text = "Trending Home Credit"
+    private fun setupLogo() {
+        ivLogo.bringToFront()
     }
 
     private fun setupRecyclerView() {

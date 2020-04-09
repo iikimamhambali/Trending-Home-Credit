@@ -16,4 +16,13 @@
         <item name="android:windowBackground">@android:color/white</item>
     </style>
 
+    <style name="AppTheme.NoActionBar.Full" parent="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="splashTheme" parent="AppTheme.NoActionBar.Full">
+        <item name="android:windowBackground">@drawable/ic_header</item>
+    </style>
+
 </resources>

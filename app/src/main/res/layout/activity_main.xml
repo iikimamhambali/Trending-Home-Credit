@@ -6,32 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <include
-        android:id="@+id/toolbarMain"
-        layout="@layout/layout_toolbar_default"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedHome"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/toolbarMain"
-        app:layout_constraintStart_toStartOf="@+id/toolbarMain"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarMain">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/sectionContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_logo" />
+
             <RelativeLayout
                 android:id="@+id/sectionBackground"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:background="@drawable/ic_header"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,6 +44,7 @@
                 android:id="@+id/rvContent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="50dp"
                 android:descendantFocusability="blocksDescendants"
                 android:focusableInTouchMode="true"
                 android:padding="10dp"
