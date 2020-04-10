@@ -1,22 +1,22 @@
 package com.android.homecreditindonesia.ui
 
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.Observer
 import com.android.homecreditindonesia.R
 import com.android.homecreditindonesia.base.BaseActivity
 import com.android.homecreditindonesia.base.BaseRecyclerView
 import com.android.homecreditindonesia.entity.*
+import com.android.homecreditindonesia.helper.getBitmapFromVectorDrawable
 import com.android.homecreditindonesia.ui.adapter.ArticleViewHolder
 import com.android.homecreditindonesia.ui.adapter.MainAdapter
 import com.android.homecreditindonesia.ui.adapter.ProductViewHolder
-import com.android.homecreditindonesia.ui.web.WebViewActivity
-import com.android.homecreditindonesia.ui.web.WebViewActivity.Companion.PRODUCT_TITLE
-import com.android.homecreditindonesia.ui.web.WebViewActivity.Companion.URL_ADDRESS
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.sectionEmptyState
 import kotlinx.android.synthetic.main.layout_connection_lost.*
-import org.jetbrains.anko.startActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity(), ProductViewHolder.SetOnClickProduct,
@@ -59,6 +59,18 @@ class MainActivity : BaseActivity(), ProductViewHolder.SetOnClickProduct,
         }
     }
 
+    private fun setupCustomTab(url: String) {
+        val backButton = this.getBitmapFromVectorDrawable(R.drawable.ic_arrow_back_ios_white_24dp)
+        val builder = backButton?.let {
+            CustomTabsIntent.Builder()
+                .setToolbarColor(Color.RED)
+                .setShowTitle(false)
+                .setCloseButtonIcon(it)
+        }
+        val customTab = builder?.build()
+        customTab?.launchUrl(this, Uri.parse(url))
+    }
+
     private fun setupRecyclerView() {
         with(rvContent) {
             initRecyclerView(
@@ -76,17 +88,11 @@ class MainActivity : BaseActivity(), ProductViewHolder.SetOnClickProduct,
     }
 
     override fun onClickProduct(items: ContentItemProduct) {
-        startActivity<WebViewActivity>(
-            URL_ADDRESS to items.link,
-            PRODUCT_TITLE to items.productName
-        )
+        setupCustomTab(items.link)
     }
 
     override fun onClickArticle(items: ContentItemArticle) {
-        startActivity<WebViewActivity>(
-            URL_ADDRESS to items.link,
-            PRODUCT_TITLE to items.articleTitle
-        )
+        setupCustomTab(items.link)
     }
 
     private fun onClickEmptyState() {
