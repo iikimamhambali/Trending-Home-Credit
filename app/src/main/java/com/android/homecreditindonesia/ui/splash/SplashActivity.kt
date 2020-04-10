@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import com.android.homecreditindonesia.R
 import com.android.homecreditindonesia.base.BaseActivity
-import com.android.homecreditindonesia.ui.MainActivity
+import com.android.homecreditindonesia.ui.home.HomeActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 import org.jetbrains.anko.startActivity
 
@@ -21,7 +21,7 @@ class SplashActivity : BaseActivity() {
         super.initView(savedInstanceState)
 
         Handler().postDelayed({
-            startActivity<MainActivity>()
+            startActivity<HomeActivity>()
             this.finish()
         }, DELAY_SPLASH_SCREEN)
     }

@@ -1,6 +1,8 @@
 ext {
     kotlinVersion = '1.3.50'
     supportLibraryVersion = '28+'
+    constrainLayoutVersion = '1.1.3'
+    androidX = '1.1.0'
     okHttp3Version = '3.8.1'
     rxJava2Version = '2.1.7'
     rxAndroid2Version = '2.0.2'
@@ -17,17 +19,17 @@ ext {
     rxBindingVersion = '2.0.0'
     leakCanaryVersion = '1.5.4'
     archVersion = '2.0.0'
-    shimmerLayout = '2.1.0'
-    shimmer = '0.5.0'
 
     supportDependencies = [
-            coreKtx        : 'androidx.core:core-ktx:1.1.0',
+            coreKtx         : 'androidx.core:core-ktx:1.1.0',
             support         : "com.android.support:support-v4:${supportLibraryVersion}",
             appCompat       : "com.android.support:appcompat-v7:${supportLibraryVersion}",
             design          : "com.android.support:design:${supportLibraryVersion}",
+            appCompatX      : "androidx.appcompat:appcompat:${androidX}",
             recyclerView    : "com.android.support:recyclerview-v7:${supportLibraryVersion}",
             cardView        : "com.android.support:cardview-v7:${supportLibraryVersion}",
-            constrainLayout: 'androidx.constraintlayout:constraintlayout:1.1.3'
+            constrainLayout : "androidx.constraintlayout:constraintlayout:${constrainLayoutVersion}",
+            customTab       : "com.android.support:customtabs:${supportLibraryVersion}"
     ]
 
     archLifecycle = [
@@ -65,11 +67,7 @@ ext {
             rxBindingSupport         : "com.jakewharton.rxbinding2:rxbinding-support-v4:${rxBindingVersion}",
             rxBindingPlatformKotlin  : "com.jakewharton.rxbinding2:rxbinding-kotlin:${rxBindingVersion}",
             rxBindingAppCompatKotlin : "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:${rxBindingVersion}",
-            rxBindingSupportKotlin   : "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:${rxBindingVersion}",
-            debugLeakCanary          : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
-            releaseLeakCanary        : "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}",
-            shimmerLayout            : "io.supercharge:shimmerlayout:${shimmerLayout}",
-            shimmer                  : "com.facebook.shimmer:shimmer:${shimmer}@aar"
+            rxBindingSupportKotlin   : "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:${rxBindingVersion}"
     ]
 
     testSupportDependencies = [

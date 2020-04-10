@@ -1,4 +1,4 @@
-package com.android.homecreditindonesia.ui
+package com.android.homecreditindonesia.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,7 @@ import com.android.homecreditindonesia.entity.Content
 import com.android.homecreditindonesia.helper.SourceStatus
 import com.android.homecreditindonesia.repository.ContentRepository
 
-class MainViewModel(private val repository: ContentRepository) : BaseViewModel() {
+class ContentViewModel(private val repository: ContentRepository) : BaseViewModel() {
 
     private val contentRequest = MutableLiveData<Boolean>()
 

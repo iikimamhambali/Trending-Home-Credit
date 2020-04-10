@@ -1,10 +1,10 @@
-package com.android.homecreditindonesia.ui
+package com.android.homecreditindonesia.ui.home
 
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.android.homecreditindonesia.R
 import com.android.homecreditindonesia.base.BaseActivity
@@ -14,22 +14,22 @@ import com.android.homecreditindonesia.helper.getBitmapFromVectorDrawable
 import com.android.homecreditindonesia.ui.adapter.ArticleViewHolder
 import com.android.homecreditindonesia.ui.adapter.MainAdapter
 import com.android.homecreditindonesia.ui.adapter.ProductViewHolder
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.sectionEmptyState
+import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_home.sectionEmptyState
 import kotlinx.android.synthetic.main.layout_connection_lost.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseActivity(), ProductViewHolder.SetOnClickProduct,
+class HomeActivity : BaseActivity(), ProductViewHolder.SetOnClickProduct,
     ArticleViewHolder.SetOnClickArticle {
 
-    private val viewModel by viewModel<MainViewModel>()
+    private val viewModel by viewModel<ContentViewModel>()
 
     private val resultList = mutableListOf<ContentData>()
     private val adapterMain by lazy {
         MainAdapter(this, this, resultList)
     }
 
-    override fun getLayoutResId(): Int = R.layout.activity_main
+    override fun getLayoutResId(): Int = R.layout.activity_home
 
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
@@ -60,11 +60,12 @@ class MainActivity : BaseActivity(), ProductViewHolder.SetOnClickProduct,
     }
 
     private fun setupCustomTab(url: String) {
-        val backButton = this.getBitmapFromVectorDrawable(R.drawable.ic_arrow_back_ios_white_24dp)
+        val backButton = this.getBitmapFromVectorDrawable(R.drawable.ic_arrow_back)
         val builder = backButton?.let {
             CustomTabsIntent.Builder()
-                .setToolbarColor(Color.RED)
-                .setShowTitle(false)
+                .setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark))
+                .setShowTitle(true)
+                .enableUrlBarHiding()
                 .setCloseButtonIcon(it)
         }
         val customTab = builder?.build()

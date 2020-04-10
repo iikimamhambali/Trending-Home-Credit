@@ -21,8 +21,6 @@ val networkModule = module {
 
     single { NetworkServiceFactory.makeGson() }
 
-    single { NetworkServiceFactory.makeNetworkChecker(get()) }
-
     single(named("RetrofitMovie")) {
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(get()))
