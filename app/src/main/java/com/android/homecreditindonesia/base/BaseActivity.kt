@@ -2,8 +2,12 @@ package com.android.homecreditindonesia.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.android.homecreditindonesia.helper.NetworkChecker
+import org.koin.android.ext.android.inject
 
 abstract class BaseActivity : AppCompatActivity(), BaseView {
+
+    protected val networkChecker by inject<NetworkChecker>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +30,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     override fun stopLoading() {}
 
-    override fun onInternetError(){}
+    override fun onInternetError() {}
 
-    override fun onError(throwable: Throwable?){}
+    override fun onError(throwable: Throwable?) {}
 }

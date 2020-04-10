@@ -9,6 +9,8 @@ import android.webkit.*
 import com.android.homecreditindonesia.R
 import com.android.homecreditindonesia.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_webview.*
+import kotlinx.android.synthetic.main.activity_webview.sectionEmptyState
+import kotlinx.android.synthetic.main.layout_connection_lost.*
 import kotlinx.android.synthetic.main.layout_toolbar_default.*
 
 class WebViewActivity : BaseActivity() {
@@ -34,6 +36,7 @@ class WebViewActivity : BaseActivity() {
     override fun initEvent() {
         super.initEvent()
         setOnClickToolbar()
+        onClickEmptyState()
     }
 
     private fun getIntentData() {
@@ -56,13 +59,24 @@ class WebViewActivity : BaseActivity() {
             }
             else -> {
                 progressView.visibility = View.GONE
-                webViewProduct.visibility = View.VISIBLE
+
+                when (networkChecker.isConnected) {
+                    true -> webViewProduct.visibility = View.VISIBLE
+                    else -> sectionEmptyState.visibility = View.VISIBLE
+                }
             }
         }
     }
 
     private fun setOnClickToolbar() {
         ivToolbarBack.setOnClickListener { finish() }
+    }
+
+    private fun onClickEmptyState() {
+        btnReload.setOnClickListener {
+            sectionEmptyState.visibility = View.GONE
+            loadingData()
+        }
     }
 
     private fun setupWebView() {

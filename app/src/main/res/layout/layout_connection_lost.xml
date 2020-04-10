@@ -20,7 +20,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_no_connection" />
+            app:srcCompat="@drawable/ic_network_check" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTitleEmpty"
@@ -53,7 +53,7 @@
             android:layout_margin="10dp"
             android:fontFamily="@font/poppins_semi_bold"
             android:padding="10dp"
-            android:text="Please Try Again"
+            android:text="@string/label_try_again"
             android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="@+id/tvSubtitleEmpty"
             app:layout_constraintStart_toStartOf="@+id/tvSubtitleEmpty"

@@ -44,4 +44,10 @@ object NetworkServiceFactory {
         val cacheSize = 10 * 1024 * 1024 // 10 MB
         return Cache(context.cacheDir, cacheSize.toLong())
     }
+
+    fun makeNetworkCheker(
+        context: Context
+    ): NetworkChecker {
+        return NetworkChecker(context)
+    }
 }
