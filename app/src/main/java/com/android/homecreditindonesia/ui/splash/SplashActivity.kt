@@ -38,7 +38,7 @@ class SplashActivity : BaseActivity() {
     private fun loadVersionNumber(): String =
         try {
             val info = packageManager.getPackageInfo(packageName, 0)
-            "v" + info.versionName
+            "V." + info.versionName
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
             ""

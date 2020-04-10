@@ -45,7 +45,7 @@ object NetworkServiceFactory {
         return Cache(context.cacheDir, cacheSize.toLong())
     }
 
-    fun makeNetworkCheker(
+    fun makeNetworkChecker(
         context: Context
     ): NetworkChecker {
         return NetworkChecker(context)

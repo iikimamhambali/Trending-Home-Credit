@@ -3,8 +3,6 @@ package com.android.homecreditindonesia.base
 import android.content.Context
 import android.util.AttributeSet
 import androidx.recyclerview.widget.*
-import com.android.homecreditindonesia.helper.GridItemDecoration
-import com.android.homecreditindonesia.helper.HorizontalItemDecoration
 
 class BaseRecyclerView : RecyclerView {
 
@@ -25,27 +23,7 @@ class BaseRecyclerView : RecyclerView {
     enum class LayoutManager {
         VERTICAL,
         HORIZONTAL,
-        GRID,
-        STAGGEREDGRIDVERTICAL,
-        STAGGEREDGRIDHORIZONTAL
-    }
-
-    enum class Snap {
-        CAROUSEL,
-        ITEM
-    }
-
-    fun initItemDecoration(space: Int) {
-        when (layout) {
-            LayoutManager.GRID -> {
-                addItemDecoration(GridItemDecoration(span, space))
-            }
-            LayoutManager.HORIZONTAL -> {
-                addItemDecoration(HorizontalItemDecoration(space))
-            }
-            else -> {
-            }
-        }
+        GRID
     }
 
     fun initRecyclerView(
@@ -64,16 +42,6 @@ class BaseRecyclerView : RecyclerView {
                 this.layoutManager = LinearLayoutManager(context, VERTICAL, reverseLayout)
             LayoutManager.HORIZONTAL ->
                 this.layoutManager = LinearLayoutManager(context, HORIZONTAL, reverseLayout)
-            LayoutManager.STAGGEREDGRIDVERTICAL ->
-                this.layoutManager =
-                    StaggeredGridLayoutManager(span, StaggeredGridLayoutManager.VERTICAL)
-            LayoutManager.STAGGEREDGRIDHORIZONTAL ->
-                this.layoutManager =
-                    StaggeredGridLayoutManager(span, StaggeredGridLayoutManager.HORIZONTAL)
         }
-    }
-
-    fun setDefaultItemAnimator() {
-        itemAnimator = DefaultItemAnimator()
     }
 }

@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.android.homecreditindonesia.base.BaseViewModel
 import com.android.homecreditindonesia.entity.Content
-import com.android.homecreditindonesia.entity.ContentData
 import com.android.homecreditindonesia.helper.SourceStatus
 import com.android.homecreditindonesia.repository.ContentRepository
 

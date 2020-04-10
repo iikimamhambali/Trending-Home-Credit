@@ -56,10 +56,6 @@ interface BaseView {
                 stopLoading()
                 resultError(resource.throwable)
             }
-            else -> {
-                stopLoading()
-                resultError(resource.throwable)
-            }
         }
     }
 }

@@ -15,7 +15,4 @@ class NetworkChecker(private val context: Context) {
             }
             return false
         }
-
-    val isNotConnected: Boolean
-        get() = !isConnected
 }

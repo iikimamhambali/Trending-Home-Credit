@@ -12,19 +12,7 @@ abstract class BaseRepositoryLiveData<Type>(private val appExecutors: AppExecuto
     private val result = MediatorLiveData<SourceStatus<Type>>()
 
     init {
-        result.value = SourceStatus.loading(null)
-        @Suppress("LeakingThis")
-        val dbSource = loadFromLocal()
-        result.addSource(dbSource) { data ->
-            result.removeSource(dbSource)
-            if (shouldFetchFromNetwork(data)) {
-                fetchFromNetwork(dbSource)
-            } else {
-                result.addSource(dbSource) { newData ->
-                    setValue(SourceStatus.success(newData))
-                }
-            }
-        }
+        fetchFromNetwork()
     }
 
     @MainThread
@@ -34,20 +22,15 @@ abstract class BaseRepositoryLiveData<Type>(private val appExecutors: AppExecuto
         }
     }
 
-    private fun fetchFromNetwork(dbSource: LiveData<Type>) {
+    private fun fetchFromNetwork() {
         val apiResponse = loadFromNetwork()
-        result.addSource(dbSource) { newData ->
-            setValue(SourceStatus.loading(newData))
-        }
         setValue(SourceStatus.loading())
         result.addSource(apiResponse) { response ->
             result.removeSource(apiResponse)
-            result.removeSource(dbSource)
             when (response) {
                 is ApiSuccessResponse -> {
                     appExecutors.diskIO().execute {
                         val newResponse = processResponse(response)
-                        saveFromNetwork(newResponse)
                         appExecutors.mainThread().execute {
                             result.addSource(apiResponse) {
                                 setValue(SourceStatus.success(newResponse))
@@ -75,15 +58,6 @@ abstract class BaseRepositoryLiveData<Type>(private val appExecutors: AppExecuto
 
     @WorkerThread
     protected open fun processResponse(response: ApiSuccessResponse<Type>) = response.body
-
-    @WorkerThread
-    protected abstract fun saveFromNetwork(item: Type)
-
-    @MainThread
-    protected abstract fun shouldFetchFromNetwork(data: Type?): Boolean
-
-    @MainThread
-    protected abstract fun loadFromLocal(): LiveData<Type>
 
     @MainThread
     protected abstract fun loadFromNetwork(): LiveData<ApiResponse<Type>>
