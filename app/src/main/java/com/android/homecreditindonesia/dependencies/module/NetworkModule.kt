@@ -1,9 +1,9 @@
 package com.android.homecreditindonesia.dependencies.module
 
 import com.android.homecreditindonesia.R
-import com.android.homecreditindonesia.helper.LiveDataCallAdapterFactory
-import com.android.homecreditindonesia.helper.NetworkServiceFactory
-import com.android.homecreditindonesia.network.ContentService
+import com.android.homecreditindonesia.data.factory.LiveDataCallAdapterFactory
+import com.android.homecreditindonesia.data.factory.NetworkServiceFactory
+import com.android.homecreditindonesia.data.network.ContentService
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.qualifier.named

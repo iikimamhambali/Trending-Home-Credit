@@ -1,8 +1,8 @@
 package com.android.homecreditindonesia.base
 
 import android.os.Bundle
-import com.android.homecreditindonesia.helper.SourceStatus
-import com.android.homecreditindonesia.helper.Status
+import com.android.homecreditindonesia.data.response.SourceStatus
+import com.android.homecreditindonesia.data.response.Status
 
 interface BaseView {
 
