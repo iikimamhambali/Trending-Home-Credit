@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Home Credit Indonesia</string>
+    <string name="server_url">https://private-a8e48-hcidtest.apiary-mock.com</string>
+    <string name="label_title_error_connection">Internet Error</string>
+    <string name="label_subtitle_error_connection">Please Check Your Connection Device</string>
+    <string name="label_try_again">Try Again</string>
 </resources>
